@@ -1,0 +1,10 @@
+{
+  "name": "offroad",
+  "displayName": "Offroad Clip Desk",
+  "version": "0.1.0",
+  "description": "Klipy i składanki offroad z YouTube: trendy, momenty wykryte po ruchu w obrazie, pionowe klipy PL+EN z napisami i źródłem w rogu, sprawdzanie przed publikacją.",
+  "author": {"name": "huzoz", "url": "https://github.com/huzoz"},
+  "repository": "https://github.com/huzoz/Offroad-",
+  "keywords": ["offroad", "4x4", "clipping", "shorts", "compilation"],
+  "skills": ["./skills/"]
+}
