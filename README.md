@@ -26,6 +26,7 @@ filmach, wytnij 3 klipy PL i EN z hookami i sprawdź je przed publikacją.
 | `moment-finder` | Najlepsze momenty 12-40 s: ruch w obrazie, "najczęściej odtwarzane" z YouTube, okrzyki PL/EN, głośność |
 | `clip-cutter` | Pionowy klip 1080x1920 w każdym języku: napisy słowo po słowie, hook, źródło w rogu, -14 LUFS |
 | `hook-writer` | 3 hooki na klip, osobno po polsku i angielsku |
+| `top5` | Odliczanka "Top 5" z lektorem AI generowanym lokalnie na Twoim GPU (Chatterbox Multilingual, EN + PL): numer, krótki żart, akcja; pytanie do widzów na koniec |
 | `compilation` | Składanka pozioma (YouTube) lub pionowa z kilku filmów: tytuł, komentarz do każdego fragmentu, źródło w rogu, rozdziały i lista źródeł w opisie |
 | `rule-check` | Format, długość, źródło w kadrze i w opisie, licencja CC lub zgoda twórcy |
 | `learning-loop` | Tabela wyników, jeden test dziennie, tylko prawdziwe liczby |
@@ -42,6 +43,16 @@ Silnik ryczy przez cały film, więc sama głośność słabo pokazuje akcję. `
 
 `moments.py` łączy to z wykresem "najczęściej odtwarzane" z YouTube (gdy jest), okrzykami w transkrypcji ("o matko", "utknął", "send it") i skokami głośności.
 
+## Lektor AI na Twoim GPU
+
+`top5` używa modelu [Chatterbox Multilingual](https://github.com/resemble-ai/chatterbox) (Resemble AI, licencja MIT, także do użytku komercyjnego). Działa lokalnie, bez opłat i bez wysyłania tekstu do chmury. Potrzebuje karty NVIDIA z ok. 6 GB VRAM (działa też na CPU, ale wolno). Instalacja w osobnym środowisku, żeby nie kłóciła się z resztą narzędzi:
+
+```
+python scripts/setup_tts.py --test
+```
+
+Skrypt rozpoznaje kartę (także RTX 50xx), instaluje odpowiedni torch z CUDA do `~/.offroad-tts` i nagrywa testowe zdanie po polsku i angielsku. Każde nagranie ma niesłyszalny znak wodny Perth (wymóg modelu).
+
 ## Uruchamianie skryptów ręcznie (zero tokenów)
 
 ```
@@ -50,6 +61,8 @@ python scripts/trends.py --hours 72
 python scripts/moments.py "https://www.youtube.com/watch?v=..." --top 8
 python scripts/cut.py jobs/<id> --pick 2 --hook "pl=Przejedzie czy zostanie?" --hook "en=Will it make it?"
 python scripts/compile.py plany/skladanka.json --langs pl,en
+python scripts/frames.py jobs/<id>
+python scripts/top5.py plany/top5.json --langs en,pl
 python scripts/check.py jobs/<id>/edits/clip_2_pl.mp4
 ```
 

@@ -20,6 +20,8 @@ Jeśli YouTube odpowiada "Sign in to confirm you're not a bot", ustaw zmienną `
 
 Jeśli po instalacji trzeba nowego terminala (PATH), powiedz to w jednej linii i sprawdź ponownie. Nigdy nie wydawaj pieniędzy.
 
+Lektor AI (dla `top5`) instaluje się osobno, dopiero gdy będzie potrzebny: `python "${CLAUDE_PLUGIN_ROOT}/scripts/setup_tts.py" --test`.
+
 ## 2. Maks. 3 pytania w JEDNEJ wiadomości
 
 1. Nazwa strony i @handle.
